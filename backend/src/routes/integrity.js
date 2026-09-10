@@ -1,0 +1,14 @@
+const router = require('express').Router();
+const { authenticate } = require('../middleware/auth');
+const asyncHandler = require('../utils/asyncHandler');
+const controller = require('../controllers/integrityController');
+router.use(authenticate);
+router.post('/images/:id/verify', asyncHandler((req, res) => controller.verify('Image', req, res)));
+router.post('/models/:id/verify', asyncHandler((req, res) => controller.verify('AIModel', req, res)));
+router.post('/predictions', asyncHandler(controller.createPrediction));
+router.post('/predictions/:id/verify', asyncHandler(controller.verifyPrediction));
+router.get('/impact/:entityType/:id', asyncHandler(controller.impact));
+router.get('/trust/:id', asyncHandler(controller.trust));
+router.get('/incidents', asyncHandler(controller.incidents));
+router.get('/contributors/:id/history', asyncHandler(controller.contributorHistory));
+module.exports = router;

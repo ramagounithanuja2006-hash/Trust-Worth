@@ -1,0 +1,10 @@
+node_modules/
+.env
+uploads/images/*
+uploads/models/*
+uploads/quarantine/*
+!uploads/images/.gitkeep
+!uploads/models/.gitkeep
+!uploads/quarantine/.gitkeep
+coverage/
+logs/
